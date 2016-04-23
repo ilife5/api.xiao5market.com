@@ -10,11 +10,9 @@ var data = {
     to: config.to
 };
 
-exports.send = function(subject, text) {
+exports.send = function(subject, text, callback) {
     mailgun.messages().send(_.extend({}, data, {
         subject: subject,
         text: text
-    }), function (error, body) {
-        console.log(body);
-    });
+    }), callback);
 };

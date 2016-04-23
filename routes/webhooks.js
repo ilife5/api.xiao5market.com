@@ -5,12 +5,17 @@ var mailgunService = require("../service/mailgun");
 /* GET users listing. */
 router.post('/bughd', function(req, res, next) {
     console.log(req.body);
-    console.log(req.params);
-    /*mailgunService.send({
-        subject: "bughd",
-        text: ""
-    });*/
-    res.send('respond with a resource');
+    mailgunService.send(req.body.user_name, req.body.datas, function(error, body) {
+        if(error == null) {
+            console.log(error);
+            res.send('ok');
+        } else {
+            console.error(error);
+            res.send('on error');
+        }
+
+    });
+
 });
 
 module.exports = router;
