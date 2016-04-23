@@ -7,7 +7,7 @@ router.post('/bughd', function(req, res, next) {
     console.log(req.body);
     mailgunService.send(req.body.user_name, req.body.datas, function(error, body) {
         if(error == null) {
-            console.log(error);
+            console.log(body);
             res.send('ok');
         } else {
             console.error(error);
