@@ -8,7 +8,7 @@ router.get('/jsConfig', function(req, res, next) {
   api.getJsConfig({
     debug: true,
     jsApiList: ['onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone', 'hideAllNonBaseMenuItem', 'closeWindow', 'showMenuItems', 'hideOptionMenu', 'onMenuShareTimeline', 'hideMenuItems'],
-    url: "http://api.xiao5market.com/foo/bar"
+    url: decodeURIComponent(req.query.url)
   }, function(s, config) {
     res.jsonp(config);
   });
