@@ -15,4 +15,8 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/MP_verify_qPgPGm52uZblZ9wq.txt', function(req, res) {
+  res.send("qPgPGm52uZblZ9wq");
+});
+
 module.exports = router;
