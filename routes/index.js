@@ -15,6 +15,17 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/foo/bar', function(req, res, next) {
+  api.getJsConfig({
+    debug: true,
+    jsApiList: ['onMenuShareAppMessage','onMenuShareQQ','onMenuShareWeibo','onMenuShareQZone', 'hideAllNonBaseMenuItem', 'closeWindow', 'showMenuItems', 'hideOptionMenu', 'onMenuShareTimeline', 'hideMenuItems'],
+    url: 'http://api.xiao5market.com/foo/bar'
+  }, function(s, config) {
+    console.log(arguments);
+    res.render('index', { title: 'Express', config: config});
+  });
+});
+
 router.get('/MP_verify_qPgPGm52uZblZ9wq.txt', function(req, res) {
   res.send("qPgPGm52uZblZ9wq");
 });
