@@ -32,4 +32,8 @@ router.get('/MP_verify_qPgPGm52uZblZ9wq.txt', function(req, res) {
   res.send("qPgPGm52uZblZ9wq");
 });
 
+router.get('/MP_verify_VbkZoUL5iXGX0sAa.txt', function(req, res) {
+  res.send("VbkZoUL5iXGX0sAa");
+});
+
 module.exports = router;
