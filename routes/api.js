@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var WechatAPI = require('wechat-api');
-var api = new WechatAPI('wx188f53f66a0ff887', '37bf14bcbb426120e93a7e57c48587d0');
+var api = new WechatAPI('wx40fa2eb9aba9b6c1', '95adbfbafa3aa289125cb5a0e72f5cf9');
 
 /* GET users listing. */
 router.get('/jsConfig', function(req, res, next) {
