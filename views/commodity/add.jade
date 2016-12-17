@@ -1,0 +1,44 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-lg-12
+            h1.page-header 产品类别
+
+    div.row
+        div.col-lg-12
+            div.panel.panel-default
+                div.panel-heading
+                    | 新的类别
+                div.panel-body
+                    div.col-lg-12
+                        div.row
+                            form(role="form",
+                                method="post",
+                                action="/commodity/insert",
+                                enctype="multipart/form-data"
+                                )
+                                div.form-group
+                                    label 类别
+                                    select.form-control(name="category" readonly=!categoryId?"":"readonly")
+                                        each category in categories
+                                            if category["_id"] == categoryId
+                                                option(value=category["_id"], selected="selected")
+                                                    = category.name
+                                            else
+                                                option(value=category["_id"])
+                                                    = category.name
+                                div.form-group
+                                    label 名称
+                                    input.form-control(name="name")
+                                    p.help-block
+                                div.form-group
+                                    label 描述
+                                    textarea.form-control(name="desc", rows="6")
+                                    p.help-block
+                                div.form-group
+                                    label 图片
+                                    input(name="image", type="file", multiple="multiple")
+                                    p.help-block
+                                button.btn.btn-default(type="submit") Submit
+

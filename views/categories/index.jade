@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-lg-12
+            h1.page-header 产品类别
+
+    div.row
+        div.col-lg-12
+            div.panel.panel-default
+                div.panel-heading
+                    | 商品类型
+                div.panel-body
+                    div.dataTables_wrapper
+                        table#table.table.table-striped.table-bordered.table-hover
+                            thead
+                                tr
+                                    th 名称
+                                    th 操作
+                            tbody
+                                each category in categories
+                                    tr
+                                        td
+                                            = category.name
+                                        td
+                                            a.btn.btn-primary(href="/categories/edit/" + category["_id"]) Edit
+                                            | &nbsp;&nbsp;
+                                            a.btn.btn-danger(href="/categories/delete/" + category["_id"]) Delete
+
+
+
+            div.text-left
+                a.btn.btn-primary.float_right(href="/categories/add")
+                    | New
+

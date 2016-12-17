@@ -1,0 +1,45 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-lg-12
+            h1.page-header 商品
+
+    div.row
+        div.col-lg-12
+            div.panel.panel-default
+                div.panel-heading
+                    | 修改商品
+                div.panel-body
+                    div.col-lg-12
+                        div.row
+                            form(role="form", method="post", action="/commodity/edit/" + id, enctype="multipart/form-data")
+                                div.form-group
+                                    label 类别
+                                    select.form-control(name="category")
+                                        each category in categories
+                                            if category["_id"] == commodity.category
+                                                option(value=category["_id"], selected="selected")
+                                                    = category.name
+                                            else
+                                                option(value=category["_id"])
+                                                    = category.name
+                                div.form-group
+                                    label 名称
+                                    input.form-control(name="name", value=commodity.name)
+                                    p.help-block
+                                div.form-group
+                                    label 描述
+                                    textarea.form-control(name="desc", rows="6")
+                                        = commodity.desc
+                                    p.help-block
+                                div.form-group
+                                    label 图片
+                                    img(src="/" + commodity.image, width="420px")
+                                    p.help-block
+                                div.form-group
+                                    label 修改图片
+                                    input(name="image", type="file", multiple="multiple")
+                                    p.help-block
+                                button.btn.btn-default(type="submit") Submit
+

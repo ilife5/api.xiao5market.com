@@ -1,0 +1,26 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-lg-12
+            h1.page-header 产品类别
+
+    div.row
+        div.col-lg-12
+            div.panel.panel-default
+                div.panel-heading
+                    | 新的类别
+                div.panel-body
+                    div.col-lg-12
+                        div.row
+                            form(role="form", method="post", action="/categories/insert")
+                                div.form-group
+                                    label 名称
+                                    input.form-control(name="name")
+                                    p.help-block
+                                div.form-group
+                                    label 描述
+                                    textarea.form-control(name="desc", rows="10")
+                                    p.help-block
+                                button.btn.btn-default(type="submit") Submit
+

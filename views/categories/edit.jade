@@ -1,0 +1,27 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-lg-12
+            h1.page-header 产品类别
+
+    div.row
+        div.col-lg-12
+            div.panel.panel-default
+                div.panel-heading
+                    | 修改类别
+                div.panel-body
+                    div.col-lg-12
+                        div.row
+                            form(role="form", method="post", action="/categories/edit/" + id)
+                                div.form-group
+                                    label 名称
+                                    input.form-control(name="name", value=category.name)
+                                    p.help-block
+                                div.form-group
+                                    label Default Options
+                                    textarea.form-control(name="addons", rows="10")
+                                        = category.desc
+                                    p.help-block
+                                button.btn.btn-default(type="submit") Submit
+

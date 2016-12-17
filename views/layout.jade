@@ -1,7 +1,44 @@
 doctype html
 html
+  - var defaultTitle = "Mall Management";
+  - var navs = [ {name:"Dashboard", link: "/", icon: "fa-dashboard"}, {name: "产品类别",link: "/categories", icon: "fa-camera"}, { name: "商品", link: "/commodity", icon: "fa-book"}, { name: "Tools", link: "/tools", icon: "fa-star"}, { name: "Forwards", link: "/forwards", icon: "fa-mail-forward"} ];
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    title= title || defaultTitle
+
+
+    link(rel='stylesheet', href='/bower/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/bower/metisMenu/dist/metisMenu.min.css')
+    link(rel='stylesheet', href='/stylesheets/timeline.css')
+    link(rel='stylesheet', href='/stylesheets/sb-admin-2.css')
+    link(rel='stylesheet', href='/bower/morrisjs/morris.css')
+    link(rel='stylesheet', href='/bower/font-awesome/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    block style
   body
-    block content
+    div#wrapper
+      nav.navbar.navbar-default.navbar-static-top(role="navigation" style="margin-bottom:0;")
+        div.navbar-header
+          a.navbar-brand(href="/")
+            = "The Mall"
+
+        div.navbar-default.sidebar(role="navigation")
+          div.sidebar-nav.navbar-collapse
+            ul#side-menu.nav
+              each nav, index in navs
+                li
+                  a(href=nav.link)
+                    i.fa.fa-fw(class=nav.icon)
+                    = " " + nav.name
+
+      div#page-wrapper
+        block content
+
+    script(src="/bower/lodash/lodash.js")
+    script(src="/bower/jquery/dist/jquery.js")
+    script(src="/bower/bootstrap/dist/js/bootstrap.js")
+    script(src="/bower/metisMenu/dist/metisMenu.min.js")
+    script(src="/scripts/sb-admin-2.js")
+    block script

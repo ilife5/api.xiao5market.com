@@ -3,9 +3,3 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-
-  script(src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js")
-  script(type='text/javascript').
-    var wxConfig = !{JSON.stringify(config)};
-
-    wx.config(wxConfig);

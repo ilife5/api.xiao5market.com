@@ -1,0 +1,60 @@
+extends ../layout
+
+block content
+    div.row
+        div.col-lg-12
+            h1.page-header 商品
+
+    div.row
+        div.col-lg-12
+            div.panel.panel-default
+                div.panel-heading
+                    | 商品类型
+                div.panel-body
+
+                    ul.nav.nav-tabs
+                        if !categoryId
+                            li.active
+                                a(href="/commodity") 全部
+                            each category in categories
+                                li
+                                    a(href="/commodity/category/" + category["_id"])
+                                        = category.name
+                        else
+                            li
+                                a(href="/commodity") 全部
+                            each category in categories
+                                if category["_id"] == categoryId
+                                    li.active
+                                        a(href="/commodity/category/" + category["_id"])
+                                            = category.name
+                                else
+                                    li
+                                        a(href="/commodity/category/" + category["_id"])
+                                            = category.name
+
+                    div.dataTables_wrapper.table_margin
+                        table#table.table.table-striped.table-bordered.table-hover
+                            thead
+                                tr
+                                    th 名称
+                                    th 操作
+                            tbody
+                                each commodity in commodities
+                                    tr
+                                        td
+                                            = commodity.name
+                                        td
+                                            a.btn.btn-primary(href="/commodity/edit/" + commodity["_id"]) Edit
+                                            | &nbsp;&nbsp;
+                                            a.btn.btn-danger(href="/commodity/delete/" + commodity["_id"]) Delete
+
+
+
+            div.text-left
+                if !categoryId
+                    a.btn.btn-primary.float_right(href="/commodity/add")
+                        | New
+                else
+                    a.btn.btn-primary.float_right(href="/commodity/add/" + categoryId)
+                        | New

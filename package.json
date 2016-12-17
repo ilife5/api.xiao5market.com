@@ -12,10 +12,15 @@
     "express": "~4.13.1",
     "jade": "~1.11.0",
     "mailgun-js": "^0.7.10",
+    "mongodb": "^2.2.15",
     "morgan": "~1.6.1",
+    "q": "^1.4.1",
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
     "wechat-api": "^1.32.0"
+  },
+  "devDependencies": {
+    "formidable": "^1.0.17"
   }
 }
