@@ -4,7 +4,9 @@ var config = {
         database: "xiao5market",
         hostname: "127.0.0.1",
         port: "27017",
-        orderGap: 100
+        orderGap: 100,
+        username: "xiao5",
+        pwd: "2187706"
     },
     query: {
         page: 10

@@ -1,4 +1,5 @@
 .idea
 node_modules
 conf.js
-public/bower
+public/bowers
+public/images/uploadcache
