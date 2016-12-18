@@ -33,9 +33,10 @@ block content
                                     textarea.form-control(name="desc", rows="6")
                                         = commodity.desc
                                     p.help-block
-                                div.form-group
-                                    label 图片
-                                    img(src="/" + commodity.image, width="420px")
+                                div.form-group.clearfix
+                                    h4 图片
+                                    div.col-lg-12.col-xs-12.col-sm-6
+                                        img(src="/" + commodity.image, width="100%")
                                     p.help-block
                                 div.form-group
                                     label 修改图片
