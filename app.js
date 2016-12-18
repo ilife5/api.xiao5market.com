@@ -36,7 +36,7 @@ app.use(session({
 app.all('*', function(req, res, next) {
     var loginPath = "/users/login";
 
-    if(req.session.login || parseurl(req).pathname == loginPath) {
+    if(parseurl(req).pathname == loginPath || parseurl(req).pathname.match(/^\/api\/g/) || req.session.login) {
         next();
     } else {
         res.redirect(loginPath);
