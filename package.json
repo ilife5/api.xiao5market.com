@@ -15,10 +15,13 @@
     "mailgun-js": "^0.7.10",
     "mongodb": "^2.2.15",
     "morgan": "~1.6.1",
+    "multiparty": "^4.2.1",
     "q": "^1.4.1",
+    "qiniu": "^7.2.1",
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
+    "uuid": "^3.3.2",
     "wechat-api": "^1.32.0"
   },
   "devDependencies": {
