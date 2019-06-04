@@ -18,8 +18,11 @@ const qnConfig = new qiniu.conf.Config();
 const formUploader = new qiniu.form_up.FormUploader(config);
 const putExtra = new qiniu.form_up.PutExtra();
 
-const multiparty = require('multiparty')
-const fs = require('fs')
+const multiparty = require('multiparty');
+const fs = require('fs');
+
+const {uploadEmf} = require('./emf');
+const path = require('path');
 
 /* GET users listing. */
 router.get('/jsConfig', function (req, res, next) {
@@ -60,25 +63,52 @@ router.post('/upload', (req, res) => {
     form.on('file', function(name,file) {
         console.log(file)
         const uploadToken=putPolicy.uploadToken(mac);
-        formUploader.putStream(uploadToken, `/test/${uuidv1()}-${file.originalFilename}`, fs.createReadStream(file.path), putExtra, function(respErr,
-                                                                                                                                       respBody, respInfo) {
-            if (respErr) {
-                throw respErr;
-            }
-            if (respInfo.statusCode === 200) {
-                res.json({
-                    "uploaded": 1,
-                    "fileName": respBody.key,
-                    "url": `http://static.xiao5market.com/${respBody.key}`,
-                    "resp": respBody
-                })
-            } else {
-                res.json({
-                    "uploaded": 0,
-                    "error": respBody
-                })
-            }
-        });
+        const uuid = uuidv1();
+        const pngPath = path.resolve(__dirname, `../upload/${uuid}.png`);
+        if(file.originalFilename.indexOf('.emf') > -1) {
+            uploadEmf(fs.createReadStream(file.path), pngPath).then(() => {
+                formUploader.putStream(uploadToken, `/test/${uuid}-${file.originalFilename}`, fs.createReadStream(pngPath), putExtra, function(respErr,
+                                                                                                                                                     respBody, respInfo) {
+                    if (respErr) {
+                        throw respErr;
+                    }
+                    if (respInfo.statusCode === 200) {
+                        res.json({
+                            "uploaded": 1,
+                            "fileName": respBody.key,
+                            "url": `http://static.xiao5market.com/${respBody.key}`,
+                            "resp": respBody
+                        })
+                    } else {
+                        res.json({
+                            "uploaded": 0,
+                            "error": respBody
+                        })
+                    }
+                });
+            });
+        } else {
+            formUploader.putStream(uploadToken, `/test/${uuidv1()}-${file.originalFilename}`, fs.createReadStream(file.path), putExtra, function(respErr,
+                                                                                                                                                 respBody, respInfo) {
+                if (respErr) {
+                    throw respErr;
+                }
+                if (respInfo.statusCode === 200) {
+                    res.json({
+                        "uploaded": 1,
+                        "fileName": respBody.key,
+                        "url": `http://static.xiao5market.com/${respBody.key}`,
+                        "resp": respBody
+                    })
+                } else {
+                    res.json({
+                        "uploaded": 0,
+                        "error": respBody
+                    })
+                }
+            });
+        }
+
     });
 });
 
