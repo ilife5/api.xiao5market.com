@@ -21,6 +21,7 @@
     "qiniu": "^7.2.1",
     "request": "^2.79.0",
     "serve-favicon": "~2.3.0",
+    "sha1": "^1.1.1",
     "underscore": "^1.8.3",
     "uuid": "^3.3.2",
     "wechat-api": "^1.32.0"

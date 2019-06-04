@@ -12,6 +12,7 @@ var users = require('./routes/users');
 var api = require('./routes/api');
 var categories = require('./routes/categories');
 var commodity = require('./routes/commodity');
+var wechat = require('./routes/wechat');
 var config = require("./config");
 
 var app = express();
@@ -33,6 +34,7 @@ app.use(session({
     saveUninitialized: true
 }));
 
+/*
 app.all('*', function(req, res, next) {
     var loginPath = "/users/login";
 
@@ -42,12 +44,14 @@ app.all('*', function(req, res, next) {
         res.redirect(loginPath);
     }
 });
+*/
 
 app.use('/', routes);
 app.use('/users', users);
 app.use('/api', api);
 app.use('/categories', categories);
 app.use('/commodity', commodity);
+app.use('/wechat', wechat)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
