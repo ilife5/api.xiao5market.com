@@ -67,7 +67,7 @@ router.post('/upload', (req, res) => {
         const pngPath = path.resolve(__dirname, `../upload/${uuid}.png`);
         if(file.originalFilename.indexOf('.emf') > -1) {
             uploadEmf(fs.createReadStream(file.path), pngPath).then(() => {
-                formUploader.putStream(uploadToken, `/test/${uuid}-${file.originalFilename}`, fs.createReadStream(pngPath), putExtra, function(respErr,
+                formUploader.putStream(uploadToken, `/test/${uuid}-${file.originalFilename}.png`, fs.createReadStream(pngPath), putExtra, function(respErr,
                                                                                                                                                      respBody, respInfo) {
                     if (respErr) {
                         throw respErr;
