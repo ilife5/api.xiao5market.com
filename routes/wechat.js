@@ -13,7 +13,7 @@ const {
 } = config;
 const appId = AppID;
 const SECRET = AppSecret;
-let token = "";
+let local_token = "";
 
 axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${AppID}&secret=${AppSecret}`)
     .then(function(response) {
@@ -25,7 +25,7 @@ axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&
             errCode,
         } = data;
 
-        token = access_token;
+        local_token = access_token;
 
         console.log('client_credential', data);
     });
@@ -81,7 +81,7 @@ router.get('/auth', function (req, res) {
                     } = response;
                     console.log('clientUserInfo', data);
 
-                    axios.get(`https://api.weixin.qq.com/cgi-bin/user/info?access_token=${token}&openid=${openid}&lang=zh_CN`).then(response => {
+                    axios.get(`https://api.weixin.qq.com/cgi-bin/user/info?access_token=${local_token}&openid=${openid}&lang=zh_CN`).then(response => {
                         console.log('serverUserInfo', response.data);
                         res.json({
                             clientUserInfo: data,
