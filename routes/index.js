@@ -18,4 +18,8 @@ router.get('/MP_verify_VbkZoUL5iXGX0sAa.txt', function (req, res) {
     res.send("VbkZoUL5iXGX0sAa");
 });
 
+router.get('/MP_verify_yxQD9k8NXqL5astT.txt', function (req, res) {
+    res.send("yxQD9k8NXqL5astT");
+});
+
 module.exports = router;

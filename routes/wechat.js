@@ -5,8 +5,15 @@ var config = require('../config');
 var token = "xxxxxxxx";
 var sha1 = require("sha1");
 var axios = require("axios");
-const appId = 'wx1ba4456e58aca466';
-const SECRET = 'd8af227e2122102125e18e1c0f3c22a7';
+const {
+    wechat: {
+        AppID,
+        AppSecret
+    }
+} = config;
+const appId = AppID;
+const SECRET = AppSecret;
+
 
 function sign (req) {
   var q = req.query;
@@ -65,7 +72,10 @@ router.get('/auth', function (req, res) {
 });
 
 router.get('/index', function (req, res) {
-    res.render('wechat/index');
+    res.render('wechat/index', {
+        AppSecret,
+        AppID
+    });
 });
 
 module.exports = router;
