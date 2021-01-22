@@ -13,7 +13,22 @@ const {
 } = config;
 const appId = AppID;
 const SECRET = AppSecret;
+let token = "";
 
+axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${AppID}&secret=${AppSecret}`)
+    .then(function(response) {
+        const {
+            data
+        } = response;
+        const {
+            access_token,
+            errCode,
+        } = data;
+
+        token = access_token;
+
+        console.log('client_credential', data);
+    });
 
 function sign (req) {
   var q = req.query;
@@ -64,8 +79,15 @@ router.get('/auth', function (req, res) {
                     const {
                         data
                     } = response;
-                    console.log('userinfo', data);
-                    res.json(data);
+                    console.log('clientUserInfo', data);
+
+                    axios.get(`https://api.weixin.qq.com/cgi-bin/user/info?access_token=${token}&openid=${openid}&lang=zh_CN`).then(response => {
+                        console.log('serverUserInfo', response.data);
+                        res.json({
+                            clientUserInfo: data,
+                            serverUserInfo: response.data
+                        });
+                    });
                 })
             }
         });
