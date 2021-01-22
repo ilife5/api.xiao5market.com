@@ -47,6 +47,7 @@ router.get('/auth', function (req, res) {
                 openid,
                 errCode,
             } = data;
+            console.log('access_token', data);
             if (errCode) {
                 res.json({
                     data, status, statusText, headers, config
@@ -56,6 +57,7 @@ router.get('/auth', function (req, res) {
                     const {
                         data
                     } = response;
+                    console.log('userinfo', data);
                     res.json(data);
                 })
             }
