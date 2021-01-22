@@ -53,7 +53,7 @@ router.get('/auth', function (req, res) {
                     data, status, statusText, headers, config
                 });
             } else {
-                axios.get(`https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN`).then(() => {
+                axios.get(`https://api.weixin.qq.com/sns/userinfo?access_token=${access_token}&openid=${openid}&lang=zh_CN`).then((response) => {
                     const {
                         data
                     } = response;
