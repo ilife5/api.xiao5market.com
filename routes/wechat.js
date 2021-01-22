@@ -15,7 +15,7 @@ const appId = AppID;
 const SECRET = AppSecret;
 let local_token = "";
 
-axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${AppID}&secret=${AppSecret}`)
+/*axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=${AppID}&secret=${AppSecret}`)
     .then(function(response) {
         const {
             data
@@ -28,7 +28,7 @@ axios.get(`https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&
         local_token = access_token;
 
         console.log('client_credential', data);
-    });
+    });*/
 
 function sign (req) {
   var q = req.query;
